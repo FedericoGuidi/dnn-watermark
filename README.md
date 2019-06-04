@@ -17,4 +17,5 @@ Python implementation of the paper "Embedding Watermarks into Deep Neural Networ
 **Pandas:** for data manipulation and analysis<br/>
 
 ## References
-[1] Y. Uchida, Y. Nagai, S. Sakazawa, and S. Satoh, "Embedding Watermarks into Deep Neural Networks," ICMR, 2017.
+[1] Y. Uchida, Y. Nagai, S. Sakazawa, and S. Satoh, "Embedding Watermarks into Deep Neural Networks," ICMR, 2017.<br/>
+[2] Original repository: https://github.com/yu4u/dnn-watermark
