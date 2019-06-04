@@ -1,0 +1,15 @@
+{
+  "target": [
+    {
+      "layer_weight": "result/direct_layer_weight.npy",
+      "predict_bparam": "result/direct_predict_bparam.npy",
+      "label": "Embedded (direct)"
+    },
+    {
+      "layer_weight": "result/direct_non_layer_weight.npy",
+      "predict_bparam": "result/direct_non_predict_bparam.npy",
+      "label": "Not embedded"
+    }
+  ],
+  "draw_type": "overlay"
+}

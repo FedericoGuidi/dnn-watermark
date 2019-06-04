@@ -1,60 +1,20 @@
-Embedding Watermarks into Deep Neural Networks
-====
-This code is the implementation of "Embedding Watermarks into Deep Neural Networks" [1]. It embeds a digital watermark into deep neural networks in training the host network. This embedding is achieved by a parameter regularizer.
+# Embedding Watermarks into Deep Neural Networks
+Python implementation of the paper "Embedding Watermarks into Deep Neural Networks" [1] https://arxiv.org/pdf/1701.04082.pdf
 
-This README will be updated later for more details.
+<p align="center">
+  <img src="result_images/history_random_direct_diff_non.png" alt="History graphic"><br/>
+  (Summary of test error and training loss after 200 epochs of training)
+</p>
 
-## Requirements
-Keras 1.1.2 (<1.2.0), tensorflow 0.12.1 (<1.0.0), numpy, matplotlib, pandas
-
- **[CAUTION]**
-We found that custom regularizers had been deprecated in the latest versions of Keras as discussed [here](https://github.com/fchollet/keras/pull/4703).
-
-> Custom regularizers may no longer work.
-
-Therefore please use the old versions of Keras and TensorFlow.
-(keras 1.1.2 does not work on tensorflow >= 1.0.)
-
-```sh
-pip install keras==1.1.2
-pip install tensorflow==0.12.1
-pip install tensorflow-gpu==0.12.1
-```
-
-
-
-## Usage
-Embed a watermark in training a host network:
-
-```sh
-# train the host network while embedding a watermark
-python train_wrn.py config/train_random_min.json
-
-# extract the embedded watermark
-python utility/wmark_validate.py result/wrn_WTYPE_random_DIM256_SCALE0.01_N1K4B64EPOCH3_TBLK1.weight result/wrn_WTYPE_random_DIM256_SCALE0.01_N1K4B64EPOCH3_TBLK1_layer7_w.npy result/random
-```
-
-Train the host network *without* embedding:
-
-```sh
-# train the host network without embedding
-python train_wrn.py config/train_non_min.json 
-
-# extract the embedded watermark (meaningless because no watermark was embedded)
-python utility/wmark_validate.py result/wrn_WTYPE_random_DIM256_SCALE0.01_N1K4B64EPOCH3_TBLK0.weight result/wrn_WTYPE_random_DIM256_SCALE0.01_N1K4B64EPOCH3_TBLK1_layer7_w.npy result/non
-
-# visualize the embedded watermark
-python utility/draw_histogram_signature.py config/draw_histogram_non.json hist_signature_non.png
-```
-
-Extracted watermarks from the embedded host network and the non-embedded networks:
-
-![](images/hist_signature_non.png)
-
-## License
-All codes are provided for research purposes only and without any warranty.
-When using any code in this project, we would appreciate it if you could refer to this project.
-
+## Libraries and tools
+**Visual Studio Code:** a code editor redefined and optimized for building and debugging modern web and cloud applications<br/>
+**GPU:** NVIDIA GeForce RTX 2060, for general computing and training the host network<br/>
+**CUDA (8.0):** a parallel computing platform and programming model developed by NVIDIA for general computing on graphical processing units (GPUs)<br/>
+**NVIDIA cuDNN (5.1):** a GPU-accelerated library of primitives for deep neural networks<br/>
+**Keras:** an open-source neural-network library<br/>
+**Tensorflow:** a free and open-source software library for dataflow and differentiable programming across a range of tasks. It is a symbolic math library, and is also used for machine learning applications such as neural networks<br/>
+**NumPy:** a library for adding support for large, multi-dimensional arrays and matrices, along with a large collection of high-level mathematical functions to operate on these arrays<br/>
+**Pandas:** for data manipulation and analysis<br/>
 
 ## References
 [1] Y. Uchida, Y. Nagai, S. Sakazawa, and S. Satoh, "Embedding Watermarks into Deep Neural Networks," ICMR, 2017.

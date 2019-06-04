@@ -2,13 +2,6 @@ from keras import backend as K
 from keras.regularizers import Regularizer
 import numpy as np
 
-def random_index_generator(count):
-    indices = np.arange(0, count)
-    np.random.shuffle(indices)
-
-    for idx in indices:
-        yield idx
-
 class WatermarkRegularizer(Regularizer):
     def __init__(self, k, b, wtype='random', randseed='none'):
         self.k = K.cast_to_floatx(k)
@@ -28,9 +21,8 @@ class WatermarkRegularizer(Regularizer):
                             'Instantiate one regularizer per layer.')
         self.p = p
 
-        # make matrix
         p_shape = K.get_variable_shape(p)
-        w_rows = np.prod(p_shape[0:3]) # todo: append theano pattern
+        w_rows = np.prod(p_shape[0:3])
         w_cols = self.b.shape[1]
 
         if self.wtype == 'random':
@@ -49,7 +41,7 @@ class WatermarkRegularizer(Regularizer):
                 self.w[next(rand_idx_gen)][col] = 1.
                 self.w[next(rand_idx_gen)][col] = -1.
         else:
-            raise Exception('wtype="{}" is not supported'.format(self.wtype))
+            raise Exception('wtype="{}" is not supported.'.format(self.wtype))
 
     def __call__(self, loss):
         if self.p is None:
@@ -77,14 +69,6 @@ class WatermarkRegularizer(Regularizer):
     def get_signature(self):
         return self.b
 
-    def get_encoded_code(self):
-        # this function is not work if set_layer was not called.
-        layer = self.layer
-        weights = layer.get_weights()
-        weight = (np.array(weights[0])).mean(axis=3)
-        print(K.eval(K.sigmoid(K.dot(K.variable(value=weight.reshape(1, weight.size)), K.variable(value=self.w)))))
-        return None # todo
-
 def get_wmark_regularizers(model):
     ret = []
 
@@ -103,3 +87,10 @@ def show_encoded_wmark(model):
                 weight = (np.array(weights[0])).mean(axis=3)
                 print(K.eval(K.sigmoid(K.dot(K.variable(value=weight.reshape(1, weight.size)), K.variable(value=regularizer.w)))))
                 print(K.eval(K.sigmoid(K.dot(K.variable(value=weight.reshape(1, weight.size)), K.variable(value=regularizer.w)))) > 0.5)
+
+def random_index_generator(count):
+    indices = np.arange(0, count)
+    np.random.shuffle(indices)
+
+    for idx in indices:
+        yield idx

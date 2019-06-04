@@ -4,6 +4,21 @@
       "history": "./result/train_history.h5",
       "path": "/WTYPE_random/DIM256/SCALE0.01/N1K4B64EPOCH200/TBLK1",
       "label": "Embedded (random)"
+    },
+    {
+      "history": "./result/train_history_direct.h5",
+      "path": "/WTYPE_direct/DIM256/SCALE0.01/N1K4B64EPOCH200/TBLK1",
+      "label": "Embedded (direct)"
+    },
+    {
+      "history": "./result/train_history_diff.h5",
+      "path": "/WTYPE_diff/DIM256/SCALE0.01/N1K4B64EPOCH200/TBLK1",
+      "label": "Embedded (diff)"
+    },
+    {
+      "history": "./result/train_history.h5",
+      "path": "/WTYPE_random/DIM256/SCALE0.01/N1K4B64EPOCH200/TBLK0",
+      "label": "Not embedded"
     }
   ],
   "color_order": [

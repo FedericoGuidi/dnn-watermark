@@ -1,0 +1,15 @@
+{
+  "target": [
+    {
+      "layer_weight": "result/diff_layer_weight.npy",
+      "predict_bparam": "result/diff_predict_bparam.npy",
+      "label": "Embedded (diff)"
+    },
+    {
+      "layer_weight": "result/diff_non_layer_weight.npy",
+      "predict_bparam": "result/diff_non_predict_bparam.npy",
+      "label": "Not embedded"
+    }
+  ],
+  "draw_type": "overlay"
+}
