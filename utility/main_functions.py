@@ -1,5 +1,5 @@
 import numpy as np
-from watermark_regularizers import get_wmark_regularizers
+from utility.watermark_regularizers import get_wmark_regularizers
 
 def save_watermark_sign(prefix, model):
     for layer_id, watermark_regularizer in get_wmark_regularizers(model):
